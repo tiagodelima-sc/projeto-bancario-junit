@@ -65,6 +65,10 @@ public class Conta implements Cadastro {
     }
 
     public void setNumero(String numero) {
+    	//Verificando se o numero tem 5 digitos, 1 hifen e 1 digito no final
+    	if(!numero.matches("\\d{5}-\\d")) {
+    		throw new IllegalArgumentException("Numero Invalido. Digite no formato correto: 00000-0");
+    	}
         this.numero = numero;
     }
 
@@ -93,6 +97,9 @@ public class Conta implements Cadastro {
     }
 
     public void setLimite(double limite) {
+    	if(!especial && limite > 0) {
+    		throw new IllegalStateException("Somente contas especiais podem ter limite");
+    	}
         this.limite = limite;
     }
 }
