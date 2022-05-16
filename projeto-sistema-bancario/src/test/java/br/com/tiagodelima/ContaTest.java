@@ -54,6 +54,7 @@ class ContaTest {
 	//Verificando se as contas especiais podem ter limite de saldo
 	@Test
 	void testAtribuindoLimiteConta_Especial() {
+		
 		final Conta contaEspecial = new Conta();
 		contaEspecial.setEspecial(true);
 		final double resultadoEsperado = 1000;
@@ -72,7 +73,17 @@ class ContaTest {
 			
 			//Estado do objeto nao E valido
 			assertThrows(IllegalStateException.class, () -> conta.setLimite(resultadoEsperado));
+		}
+		
+	//Verificando se o historico de movimentacao da conta inicia com uma lista vazia e nao null
+		@Test
+		void testVerificandoSeAlistaEvazia() {
+			
+			final Conta historicoMovimentacao = new Conta();
+			assertNotNull(historicoMovimentacao.getMovimentacoes());
+
 			
 		}
+		
 
 }

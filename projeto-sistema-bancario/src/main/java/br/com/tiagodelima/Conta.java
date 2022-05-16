@@ -1,5 +1,6 @@
 package br.com.tiagodelima;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class Conta implements Cadastro {
     private boolean especial;
     private double saldo;
     private double limite;
-    private List<Movimentacao> movimentacoes;
+    private List<Movimentacao> movimentacoes = new ArrayList();
 
     public Conta() {
         // TODO: Você precisa implementar este método
