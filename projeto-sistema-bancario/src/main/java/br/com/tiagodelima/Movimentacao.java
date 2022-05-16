@@ -10,7 +10,7 @@ public class Movimentacao implements Cadastro {
 	private long id;
     private String descricao;
     private Conta conta;
-    private char tipo;
+    private String tipo;
     private double valor;
     private boolean confirmada;
 
@@ -29,11 +29,11 @@ public class Movimentacao implements Cadastro {
         this.id = id;
     }
 
-    public char getTipo(){
+    public String getTipo(){
         return tipo;
     }
 
-    public void setTipo(char tipo){
+    public void setTipo(String tipo){
         this.tipo = tipo;
     }
 

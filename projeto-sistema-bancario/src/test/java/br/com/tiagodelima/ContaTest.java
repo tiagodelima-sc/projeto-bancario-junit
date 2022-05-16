@@ -66,24 +66,61 @@ class ContaTest {
 	}
 	
 	//Verificando se as contas normais podem ter limite de saldo
-		@Test
-		void testAtribuindoLimiteConta_NaoEspecial() {
-			final Conta conta = new Conta();
-			final double resultadoEsperado = 1000;
+	@Test
+	void testAtribuindoLimiteConta_NaoEspecial() {
+		
+		final Conta conta = new Conta();
+		final double resultadoEsperado = 1000;
 			
-			//Estado do objeto nao E valido
-			assertThrows(IllegalStateException.class, () -> conta.setLimite(resultadoEsperado));
-		}
+		//Estado do objeto nao E valido
+		assertThrows(IllegalStateException.class, () -> conta.setLimite(resultadoEsperado));
+	}
 		
 	//Verificando se o historico de movimentacao da conta inicia com uma lista vazia e nao null
-		@Test
-		void testVerificandoSeAlistaEvazia() {
+	@Test
+	void testVerificandoSeAlistaEvazia() {
 			
-			final Conta historicoMovimentacao = new Conta();
-			assertNotNull(historicoMovimentacao.getMovimentacoes());
+		final Conta historicoMovimentacao = new Conta();
+		assertNotNull(historicoMovimentacao.getMovimentacoes());
+	}
+	
+	//Verificando saldo total da conta 
+	@Test
+	void testPegarSaldoTotal() {
+		final double limite = 500;
+		final double resultadoEsperado = limite;
+		
+		//Contas acabadas de ser criadas, devem ter saldo 0
+		final Conta saldoTotal = new Conta();
+		//Definindo conta especial e atribuindo limite
+		saldoTotal.setEspecial(true);
+		saldoTotal.setLimite(limite);
+		
+		final double resultadoObtido = saldoTotal.getSaldoTotal(); 
+		
+		assertEquals(resultadoEsperado, resultadoObtido);
+	}
+	
+	//Verfificando se o deposito de dinheiro foi concluido com sucesso
+	@Test
+	void testDepositoDinheiro() {
+		
+		final double limite = 500.6;
+		final double deposito = 500.8;
+		final double resultadoEsperado = 1001.4;
+		
+		final Conta depositoDinheiro = new Conta();
+		depositoDinheiro.setEspecial(true);
+		depositoDinheiro.setLimite(limite);
+		depositoDinheiro.depositoDinheiro(deposito);
+		
+		final double resultadoObtido = depositoDinheiro.getSaldoTotal();
+		assertEquals(resultadoEsperado, resultadoObtido, 0.001);
 
-			
-		}
+
+		
+		
+	}
 		
 
 }
