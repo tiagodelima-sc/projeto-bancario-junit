@@ -84,9 +84,43 @@ class ContaTest {
 		assertNotNull(historicoMovimentacao.getMovimentacoes());
 	}
 	
-	//Verificando saldo total da conta 
+	//Verificando o metodo de adicionar uma movimentacao na conta atraves do credito
 	@Test
-	void testPegarSaldoTotal() {
+	void testAdicionandoNovaMovimentacao_Credito() {
+		
+		Conta movimentacao = new Conta();
+		Movimentacao mov = new Movimentacao(movimentacao);
+		
+		mov.setConfirmada(true);
+		mov.setTipo("Credito");
+		final double resultadoEsperado = 100.50;
+		mov.setValor(resultadoEsperado);
+		movimentacao.addMovimentacao(mov);
+		
+		assertEquals(resultadoEsperado, movimentacao.getSaldo());
+	}
+	
+	//Verificando o metodo de adicionar uma movimentacao na conta atraves do debito
+	@Test
+	void testAdicionandoNovaMovimentacao_Debito() {
+		
+		Conta movimentacao = new Conta();
+		Movimentacao mov = new Movimentacao(movimentacao);
+		
+		mov.setConfirmada(true);
+		mov.setTipo("Debito");
+		final double valor = 100.50;
+		final double resultadoEsperado = -valor;
+		mov.setValor(valor);
+		movimentacao.addMovimentacao(mov);
+		
+		assertEquals(resultadoEsperado, movimentacao.getSaldo());
+	}
+	
+	//Verificando saldo total da conta especial
+	@Test
+	void testPegarSaldoTotal_ContaEspecial() {
+		
 		final double limite = 500;
 		final double resultadoEsperado = limite;
 		
@@ -116,10 +150,6 @@ class ContaTest {
 		
 		final double resultadoObtido = depositoDinheiro.getSaldoTotal();
 		assertEquals(resultadoEsperado, resultadoObtido, 0.001);
-
-
-		
-		
 	}
 		
 

@@ -30,7 +30,13 @@ public class Conta implements Cadastro {
     }
 
     public void addMovimentacao(Movimentacao movimentacao) {
-        // TODO: Você precisa implementar este método
+        if(movimentacao.isConfirmada()) {
+        	if(movimentacao.getTipo() == "Credito") {
+        		saldo += movimentacao.getValor();
+        	} else if (movimentacao.getTipo() == "Debito") {
+        		saldo -= movimentacao.getValor();
+        	}
+        }
     }
 
     public double getSaldoTotal() {
